@@ -90,10 +90,10 @@ jobs:
         goversion:
           - 1.16.x
         language:
-          - nodejs
+          # - dotnet
+          # - go
+          # - nodejs
           - python
-          - dotnet
-          - go
         nodeversion:
           - 13.x
         pythonversion:
