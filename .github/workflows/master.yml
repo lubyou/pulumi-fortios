@@ -1,3 +1,17 @@
+name: master
+"on":
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - CHANGELOG.md
+    tags-ignore:
+      - v*
+      - sdk/*
+      - "**"
+  workflow_dispatch: {}
+
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GO111MODULE: "on"
@@ -19,13 +33,14 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      # - name: Checkout Scripts Repo
-      #   uses: actions/checkout@v2
-      #   with:
-      #     path: ci-scripts
-      #     repository: pulumi/scripts
-      # - name: Unshallow clone for tags
-      #   run: git fetch --prune --unshallow --tags
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v2
+        with:
+          path: ci-scripts
+          repository: pulumi/scripts
+      - name: Unshallow clone for tags
+        if: ${{ !env.ACT }
+        run: git fetch --prune --unshallow --tags
       - name: Install Go
         uses: actions/setup-go@v2
         with:
@@ -75,13 +90,13 @@ jobs:
         with:
           name: ${{ matrix.language  }}-sdk.tar.gz
           path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
-      - if: failure() && github.event_name == 'push'
-        name: Notify Slack
-        uses: 8398a7/action-slack@v3
-        with:
-          author_name: Failure in building ${{ matrix.language }} sdk
-          fields: repo,commit,author,action
-          status: ${{ job.status }}
+      # - if: failure() && github.event_name == 'push'
+      #   name: Notify Slack
+      #   uses: 8398a7/action-slack@v3
+      #   with:
+      #     author_name: Failure in building ${{ matrix.language }} sdk
+      #     fields: repo,commit,author,action
+      #     status: ${{ job.status }}
     strategy:
       fail-fast: true
       matrix:
@@ -175,13 +190,14 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      # - name: Checkout Scripts Repo
-      #   uses: actions/checkout@v2
-      #   with:
-      #     path: ci-scripts
-      #     repository: pulumi/scripts
-      # - name: Unshallow clone for tags
-      #   run: git fetch --prune --unshallow --tags
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v2
+        with:
+          path: ci-scripts
+          repository: pulumi/scripts
+      - name: Unshallow clone for tags
+        if: ${{ !env.ACT }
+        run: git fetch --prune --unshallow --tags
       - name: Install Go
         uses: actions/setup-go@v2
         with:
@@ -200,6 +216,7 @@ jobs:
           }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
           }}
       - name: Upload artifacts
+        if: ${{ !env.ACT }
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PROVIDER }}-provider.tar.gz
@@ -420,15 +437,3 @@ jobs:
   #         - 13.x
   #       pythonversion:
   #         - "3.7"
-name: master
-"on":
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - CHANGELOG.md
-    tags-ignore:
-      - v*
-      - sdk/*
-      - "**"
-  workflow_dispatch: {}
