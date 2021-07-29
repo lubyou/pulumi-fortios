@@ -39,7 +39,7 @@ jobs:
           path: ci-scripts
           repository: pulumi/scripts
       - name: Unshallow clone for tags
-        if: ${{ !env.ACT }
+        if: ${{ !env.ACT }}
         run: git fetch --prune --unshallow --tags
       - name: Install Go
         uses: actions/setup-go@v2
@@ -196,7 +196,7 @@ jobs:
           path: ci-scripts
           repository: pulumi/scripts
       - name: Unshallow clone for tags
-        if: ${{ !env.ACT }
+        if: ${{ !env.ACT }}
         run: git fetch --prune --unshallow --tags
       - name: Install Go
         uses: actions/setup-go@v2
@@ -216,7 +216,7 @@ jobs:
           }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
           }}
       - name: Upload artifacts
-        if: ${{ !env.ACT }
+        if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PROVIDER }}-provider.tar.gz
