@@ -263,8 +263,12 @@ github.com/fortinetdev/forti-sdk-go v1.1.2 h1:fDoiKXsc+yKuFYq6RJnInsFFRkvpVnGQTE
 github.com/fortinetdev/forti-sdk-go v1.1.2/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/fortinetdev/forti-sdk-go v1.1.22 h1:xv86Vn3xgTiCMTLfO6unwOSdiABGttvBHlhbYtgKW94=
 github.com/fortinetdev/forti-sdk-go v1.1.22/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
+github.com/fortinetdev/forti-sdk-go v1.4.0 h1:Sw+wS8wkgXaQlxiE6AS8B+O67RoT2EGu4Sd5hKwPdXk=
+github.com/fortinetdev/forti-sdk-go v1.4.0/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/fortinetdev/terraform-provider-fortios v1.11.0 h1:YdrdFXlV89miPFSS92u50u/cW7k9yI0hu+Yx+z95PT8=
 github.com/fortinetdev/terraform-provider-fortios v1.11.0/go.mod h1:7hcG5pwQjkl+uCH7+n88l2effYY88+GTRLkKTmDoJZ4=
+github.com/fortinetdev/terraform-provider-fortios v1.13.1 h1:Y63Dr/deL0d30yP8i+pw6HpTl4xHnHBKaD2fKHKiZWE=
+github.com/fortinetdev/terraform-provider-fortios v1.13.1/go.mod h1:TIyMpSUVgLP6mWOX/VJU1u5XvHZuyy7420VOsjCQRyI=
 github.com/fortytw2/leaktest v1.2.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
 github.com/fortytw2/leaktest v1.3.0 h1:u8491cBMTQ8ft8aeV+adlcytMZylmA5nnwwkRZjI8vw=
 github.com/fortytw2/leaktest v1.3.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
