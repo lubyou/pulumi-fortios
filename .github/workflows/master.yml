@@ -170,7 +170,7 @@ jobs:
         language:
         - nodejs
         - python
-        - dotnet
+        # - dotnet
         - go
         nodeversion:
         - 14.x
@@ -469,7 +469,7 @@ jobs:
   #       language:
   #       - nodejs
   #       - python
-  #       - dotnet
+  # #       - dotnet
   #       - go
   #       nodeversion:
   #       - 14.x
