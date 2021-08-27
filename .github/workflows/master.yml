@@ -168,7 +168,7 @@ jobs:
         goversion:
         - 1.16.x
         language:
-        - nodejs
+        # - nodejs
         - python
         # - dotnet
         - go
@@ -467,7 +467,7 @@ jobs:
   #       goversion:
   #       - 1.16.x
   #       language:
-  #       - nodejs
+  #       # - nodejs
   #       - python
   # #       - dotnet
   #       - go
