@@ -246,6 +246,7 @@ jobs:
   publish:
     name: publish
     #needs: test
+    needs: build_sdk
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
