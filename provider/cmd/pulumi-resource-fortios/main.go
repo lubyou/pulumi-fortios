@@ -17,8 +17,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v2/pkg/tfbridge"
-
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	fortios "github.com/pulumi/pulumi-fortios/provider"
 	"github.com/pulumi/pulumi-fortios/provider/pkg/version"
 )

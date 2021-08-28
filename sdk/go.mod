@@ -1,5 +1,5 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/pulumi/pulumi-fortios/sdk
 
-go 1.16
+go 1.14
 
-require github.com/pulumi/pulumi/sdk/v2 v2.18.0
+require github.com/pulumi/pulumi/sdk/v3 v3.4.0

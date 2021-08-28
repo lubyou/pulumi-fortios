@@ -12,13 +12,13 @@ Modify this README to describe:
 
 ## Creating a Pulumi Terraform Bridge Provider
 
-First, clone this repo with the name of the desired provider in place of `xyz`:
+First, clone this repo with the name of the desired provider in place of `fortios`:
 
 ```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-xyz
+git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-fortios
 ```
 
-Second, replace references to `xyz` with the name of your provider:
+Second, replace references to `fortios` with the name of your provider:
 
 ```
 make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
@@ -36,7 +36,6 @@ In order to properly build the sdks, the following tools are expected:
 
 In the root of the repository, run:
 
-- `GO111MODULE=on go get github.com/pulumi/pulumi-terraform@master`
 - `(cd provider && go get github.com/terraform-providers/terraform-provider-foo)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
 - `(cd provider && go mod download)`
 
@@ -69,14 +68,14 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-xyz/sdk/go/...
+    $ go get github.com/pulumi/pulumi-fortios/sdk/go/...
 
 ## Configuration
 
-The following configuration points are available for the `xyz` provider:
+The following configuration points are available for the `fortios` provider:
 
-- `xyz:apiKey` (environment: `XYZ_API_KEY`) - the API key for `xyz`
-- `xyz:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `fortios:apiKey` (environment: `XYZ_API_KEY`) - the API key for `fortios`
+- `fortios:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
 
 ## Reference
 
