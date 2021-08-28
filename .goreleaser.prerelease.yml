@@ -1,35 +1,35 @@
 archives:
-- id: archive
-  name_template: '{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}'
+  - id: archive
+    name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
 before:
   hooks:
-  - make tfgen
-# blobs:
-# - bucket: get.pulumi.com
-#   folder: releases/plugins/
-#   ids:
-#   - archive
-#   provider: s3
-#   region: us-west-2
+    - make tfgen
+blobs:
+  - bucket: pulumi
+    folder: releases/plugins/
+    ids:
+      - archive
+    provider: s3
+    endpoint: https://s3.vnci.io
 builds:
-- binary: pulumi-resource-fortios
-  dir: provider
-  env:
-  - CGO_ENABLED=0
-  - GO111MODULE=on
-  goarch:
-  - amd64
-  - arm64
-  goos:
-  - darwin
-  - windows
-  - linux
-  ldflags:
-  - -X github.com/pulumi/pulumi-fortios/provider/v4/pkg/version.Version={{.Tag}}
-  main: ./cmd/pulumi-resource-fortios/
+  - binary: pulumi-resource-fortios
+    dir: provider
+    env:
+      - CGO_ENABLED=0
+      - GO111MODULE=on
+    goarch:
+      - amd64
+      - arm64
+    goos:
+      - darwin
+      - windows
+      - linux
+    ldflags:
+      - -X github.com/pulumi/pulumi-fortios/provider/v4/pkg/version.Version={{.Tag}}
+    main: ./cmd/pulumi-resource-fortios/
 changelog:
   skip: true
 release:
   disable: true
 snapshot:
-  name_template: '{{ .Tag }}-SNAPSHOT'
+  name_template: "{{ .Tag }}-SNAPSHOT"
