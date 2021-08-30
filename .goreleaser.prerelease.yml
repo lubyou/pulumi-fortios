@@ -10,7 +10,7 @@ blobs:
     ids:
       - archive
     provider: s3
-    endpoint: https://s3.vnci.io
+    endpoint: {{ .Env.S3_ENDPOINT}}
 builds:
   - binary: pulumi-resource-fortios
     dir: provider
