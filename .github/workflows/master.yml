@@ -7,13 +7,9 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   NUGET_PUBLISH_KEY: ${{ secrets.NUGET_PUBLISH_KEY }}
   PROVIDER: fortios
-  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-  PULUMI_API: https://api.pulumi-staging.io
-  PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TRAVIS_OS_NAME: linux
-  VERSION_PREFIX: 4.0.0
 
 name: master
 "on":
@@ -26,8 +22,6 @@ name: master
       - v*
       - sdk/*
       - "**"
-
-# if: ${{ !env.ACT }}
 
 jobs:
   prerequisites:
@@ -77,10 +71,7 @@ jobs:
 
             ${{ env.SCHEMA_CHANGES }}
       - name: Tar provider binaries
-        run:
-          tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
-          }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
-          }}
+        run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER }}
       - name: Upload artifacts
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v2
@@ -279,9 +270,7 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args:
-            -p 1 -f .goreleaser.prerelease.yml --rm-dist --skip-validate --timeout
-            60m0s
+          args: -p 1 -f .goreleaser.prerelease.yml --rm-dist --skip-validate --timeout 60m0s
           version: latest
     strategy:
       fail-fast: true
