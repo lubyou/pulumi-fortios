@@ -10,7 +10,7 @@ blobs:
     ids:
       - archive
     provider: s3
-    endpoint: {{ .Env.S3_ENDPOINT}}
+    endpoint: "{{ .Env.S3_ENDPOINT }}"
 builds:
   - binary: pulumi-resource-fortios
     dir: provider
