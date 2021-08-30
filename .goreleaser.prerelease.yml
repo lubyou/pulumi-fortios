@@ -1,5 +1,3 @@
-env:
-  - S3_ENDPOINT={{ .Env.S3_ENDPOINT }}
 archives:
   - id: archive
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
@@ -12,7 +10,7 @@ blobs:
     ids:
       - archive
     provider: s3
-    endpoint: "{{ .Env.S3_ENDPOINT }}"
+    endpoint: https://s3.vnci.io
 builds:
   - binary: pulumi-resource-fortios
     dir: provider
