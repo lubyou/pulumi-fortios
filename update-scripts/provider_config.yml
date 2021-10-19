@@ -1,0 +1,19 @@
+provider:
+  name: fortios
+
+  # provider variable option = corressponding ENV var
+  env_var_mapping:
+    cabundlefile: FORTIOS_CA_CABUNDLE
+    cacert:
+    clientcert:
+    clientkey:
+    fmg_cabundlefile: FORTIOS_FMG_CABUNDLE
+    fmg_hostname: FORTIOS_FMG_HOSTNAME
+    fmg_insecure: FORTIOS_FMG_INSECURE
+    fmg_passwd: FORTIOS_FMG_PASSWORD
+    fmg_username: FORTIOS_FMG_USERNAME
+    hostname: FORTIOS_ACCESS_HOSTNAME
+    insecure: FORTIOS_INSECURE
+    peerauth:
+    token: FORTIOS_ACCESS_TOKEN
+    vdom:
