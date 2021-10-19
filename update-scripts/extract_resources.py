@@ -83,7 +83,23 @@ def update_resources_go(
         if name in env_var_mapping:
             provider_option["env_var"] = env_var_mapping[name]
 
-    from pprint import pprint
+    resource_override_map = provider_config.get("resource_name_override_mapping", {})
+
+    resources = []
+    for resource_name, resource_camel_case_name in extracted_resources["resources"]:
+        if resource_name in resource_override_map:
+            resource_camel_case_name = resource_override_map[resource_name]
+        resources.append((resource_name, resource_camel_case_name))
+    extracted_resources["resources"] = resources
+
+    data_sources = []
+    for data_source_name, data_source_camel_case_name in extracted_resources[
+        "data_sources"
+    ]:
+        if data_source_name in resource_override_map:
+            data_source_camel_case_name = resource_override_map[data_source_name]
+        data_sources.append((data_source_name, data_source_camel_case_name))
+    extracted_resources["data_sources"] = data_sources
 
     template = env.get_template("resources.go.j2")
     if resources_file:

@@ -17,3 +17,10 @@ provider:
     peerauth:
     token: FORTIOS_ACCESS_TOKEN
     vdom:
+
+  # error TS1149: File name '/Users/js/development/pulumi-fortios/sdk/nodejs/logFortianalyzerSetting.ts' differs from already included file name '/Users/js/development/pulumi-fortios/sdk/nodejs/logFortiAnalyzerSetting.ts' only in casing
+  # resource name = OverridenCamelCaseName
+  resource_name_override_mapping:
+    fortios_vpn_ipsec_phase1interface: VPNIPsecPhase1InterfaceLegacy
+    fortios_vpn_ipsec_phase2interface: VPNIPsecPhase2InterfaceLegacy
+    fortios_log_fortianalyzer_setting: LogFortiAnalyzerSettingLegacy
