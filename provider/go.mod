@@ -4,7 +4,7 @@ go 1.16
 
 replace (
 	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
-	github.com/terraform-providers/terraform-provider-fortios => github.com/fortinetdev/terraform-provider-fortios v1.13.1
+	github.com/terraform-providers/terraform-provider-fortios => github.com/fortinetdev/terraform-provider-fortios v1.13.2
 )
 
 require (
