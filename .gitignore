@@ -152,7 +152,7 @@ GitHub.sublime-settings
 **/obj/
 Pulumi.*.yaml
 sdk/nodejs/node_modules
-
+sdk/*/bin
 **/command-output/
 
 .idea/
