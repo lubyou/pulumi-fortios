@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * Local keys and certificates.
  *
- * Due to the limitations of the current system, the feature is temporarily unavailable. Please use the following resource configuration as an alternative.
+ * By design considerations, the feature is using the fortios.JSONGenericAPI resource as documented below.
  *
  * ## Example
  *

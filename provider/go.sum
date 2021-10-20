@@ -177,6 +177,8 @@ github.com/fortinetdev/forti-sdk-go v1.4.0 h1:Sw+wS8wkgXaQlxiE6AS8B+O67RoT2EGu4S
 github.com/fortinetdev/forti-sdk-go v1.4.0/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/fortinetdev/terraform-provider-fortios v1.13.1 h1:Y63Dr/deL0d30yP8i+pw6HpTl4xHnHBKaD2fKHKiZWE=
 github.com/fortinetdev/terraform-provider-fortios v1.13.1/go.mod h1:TIyMpSUVgLP6mWOX/VJU1u5XvHZuyy7420VOsjCQRyI=
+github.com/fortinetdev/terraform-provider-fortios v1.13.2 h1:Hhmbxcxg4vBHWrDMJrI/T2aY67jdTdheV22XPP9Bsdo=
+github.com/fortinetdev/terraform-provider-fortios v1.13.2/go.mod h1:TIyMpSUVgLP6mWOX/VJU1u5XvHZuyy7420VOsjCQRyI=
 github.com/fortytw2/leaktest v1.3.0/go.mod h1:jDsjWgpAGjm2CA7WthBh/CdZYEPF31XHquHwclZch5g=
 github.com/frankban/quicktest v1.10.0/go.mod h1:ui7WezCLWMWxVWr1GETZY3smRy0G4KWq9vcPtJmFl7Y=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
