@@ -7,5 +7,5 @@ curl -s \
 
 tar xzf pulumi.tar.gz && \
     rm -f pulumi.tar.gz && \
-    mv pulumi /usr/bin/pulumi && \
-    chmod +x /usr/bin/pulumi
+    mv pulumi/pulumi /usr/bin/pulumi && \
+    rm -rf pulumi
