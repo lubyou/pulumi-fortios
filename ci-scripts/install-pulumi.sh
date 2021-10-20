@@ -7,4 +7,4 @@ curl \
 
 tar xzf pulumi.tar.gz && \
     rm -f pulumi.tar.gz && \
-    ln -s /usr/bin/pulumi pulumi
+    mv pulumi /usr/bin/pulumi

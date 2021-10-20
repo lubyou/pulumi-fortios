@@ -7,4 +7,4 @@ curl \
 
 tar xzf pulumictl.tar.gz && \
     rm -f pulumictl.tar.gz && \
-    ln -s /usr/bin/pulumictl pulumictl
+    mv pulumictl /usr/bin/pulumictl
