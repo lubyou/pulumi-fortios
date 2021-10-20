@@ -659,7 +659,7 @@ class CertificateLocal(pulumi.CustomResource):
         """
         Local keys and certificates.
 
-        Due to the limitations of the current system, the feature is temporarily unavailable. Please use the following resource configuration as an alternative.
+        By design considerations, the feature is using the JSONGenericAPI resource as documented below.
 
         ## Example
 
@@ -692,7 +692,7 @@ class CertificateLocal(pulumi.CustomResource):
         """
         Local keys and certificates.
 
-        Due to the limitations of the current system, the feature is temporarily unavailable. Please use the following resource configuration as an alternative.
+        By design considerations, the feature is using the JSONGenericAPI resource as documented below.
 
         ## Example
 

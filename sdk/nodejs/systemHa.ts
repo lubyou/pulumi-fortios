@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
 /**
  * Configure HA.
  *
- * Due to the limitations of the current system, the feature is temporarily unavailable. Please use the following resource configuration as an alternative.
+ * By design considerations, the feature is using the fortios.SystemAutoScript resource as documented below.
  *
  * ## Example1
  *

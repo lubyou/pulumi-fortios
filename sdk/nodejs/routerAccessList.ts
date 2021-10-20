@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * ```
  * ## Note
  *
- * Due to the limitations of the current system, the feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
+ * The feature can only be correctly supported when FortiOS Version >= 6.2.4, for FortiOS Version < 6.2.4, please use the following resource configuration as an alternative.
  *
  * ### Example
  * ```typescript
