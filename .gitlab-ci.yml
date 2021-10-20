@@ -1,0 +1,34 @@
+image: alpine:3.14
+
+variables:
+  PACKER_VERSION: 1.7.5-r0
+  TERRAFORM_VERSION: 1.0.7-r0
+  PROVIDER: fortios
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+
+stages:
+  - prerequisites
+  - build
+
+# validate packer template
+build-prerequisites:
+  stage: prerequisites
+  before_script:
+    - apk add
+      go
+      make
+    - $CI_PROJECT_DIR/ci-scripts/install-pulumictl.sh
+    - $CI_PROJECT_DIR/ci-scripts/install-pulumi.sh
+  script:
+    - make provider
+    - tar -zcf $CI_PROJECT_DIR/bin/provider.tar.gz -C $CI_PROJECT_DIR/bin/ pulumi-resource-$PROVIDER pulumi-tfgen-$PROVIDER
+  #   - packer init $CI_PROJECT_DIR/windows/init.pkr.hcl
+  #   - packer validate $CI_PROJECT_DIR/windows/init.pkr.hcl
+
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/bin/provider.tar.gz
+    expire_in: 1 day
