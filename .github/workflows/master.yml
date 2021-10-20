@@ -12,16 +12,16 @@ env:
   TRAVIS_OS_NAME: linux
 
 name: master
-"on":
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - CHANGELOG.md
-    tags-ignore:
-      - v*
-      - sdk/*
-      - "**"
+# on:
+#   push:
+#     branches:
+#       - master
+#     paths-ignore:
+#       - CHANGELOG.md
+#     tags-ignore:
+#       - v*
+#       - sdk/*
+#       - "**"
 
 jobs:
   prerequisites:
