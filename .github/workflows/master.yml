@@ -12,7 +12,7 @@ env:
   TRAVIS_OS_NAME: linux
 
 name: master
-# on:
+on: workflow_dispatch
 #   push:
 #     branches:
 #       - master
