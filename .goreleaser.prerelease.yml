@@ -1,6 +1,11 @@
 archives:
   - id: archive
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
+artifactories:
+  - name: lubyou
+    mode: archive
+    target: "https://lubyou.jfrog.io/artifactory/pulumi-packages/{{ .ProjectName }}/"
+    username: goreleaser
 before:
   hooks:
     - make tfgen
