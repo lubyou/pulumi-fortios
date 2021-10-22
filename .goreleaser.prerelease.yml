@@ -29,7 +29,6 @@ changelog:
 release:
   disable: false
   prerelease: auto
-  name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
 
 blobs:
   - bucket: pulumi
