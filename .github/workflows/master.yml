@@ -152,7 +152,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.language  }}-sdk.tar.gz
-          path: ${{ github.workspace}}/sdk/${{ matrix.language }}.tar.gz
+          path: ${{ github.workspace }}/sdk/${{ matrix.language }}.tar.gz
 
     strategy:
       fail-fast: true
@@ -276,7 +276,9 @@ jobs:
 
   publish_sdk:
     name: publish_sdk
-    needs: publish
+    needs:
+      - build_sdk
+      - publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -286,6 +288,7 @@ jobs:
         with:
           path: ci-scripts
           repository: pulumi/scripts
+          ref: cd87b45d3187e45b5b9a7d99e885c9bcc436990a
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
       - name: Install Go
@@ -302,6 +305,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.nodeversion }}
+          always-auth: true
           registry-url: https://registry.npmjs.org
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
@@ -311,32 +315,41 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.pythonversion }}
-      - name: Download python SDK
+      - name: Download Python SDK
         uses: actions/download-artifact@v2
         with:
           name: python-sdk.tar.gz
-          path: ${{ github.workspace}}/sdk/
-      - name: Uncompress python SDK
+          path: ${{ github.workspace }}/sdk
+      - name: Unzip Python SDK
         run: tar -zxf ${{ github.workspace }}/sdk/python.tar.gz -C ${{ github.workspace }}/sdk/python
-      # - name: Download dotnet SDK
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: dotnet-sdk.tar.gz
-      #     path: ${{ github.workspace}}/sdk/
-      # - name: Uncompress dotnet SDK
-      #   run: tar -zxf ${{ github.workspace }}/sdk/dotnet.tar.gz -C ${{ github.workspace }}/sdk/dotnet
-      - name: Download nodejs SDK
+      - name: Install Twine
+        run: python -m pip install pip twine
+      - name: Download NodeJS SDK
         uses: actions/download-artifact@v2
         with:
           name: nodejs-sdk.tar.gz
-          path: ${{ github.workspace}}/sdk/
-      - name: Uncompress nodejs SDK
+          path: ${{ github.workspace }}/sdk
+      - name: Unzip NodeJS SDK
         run: tar -zxf ${{ github.workspace }}/sdk/nodejs.tar.gz -C ${{ github.workspace }}/sdk/nodejs
-      - run: python -m pip install pip twine
-      - env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        name: Publish SDKs
-        run: ./ci-scripts/ci/publish-tfgen-package ${{ github.workspace }}
+      # - name: Download DotNet SDK
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: dotnet-sdk.tar.gz
+      #     path: ${{ github.workspace }}/sdk
+      # - name: Unzip DotNet SDK
+      #   run: tar -zxf ${{ github.workspace }}/sdk/dotnet.tar.gz -C ${{ github.workspace }}/sdk/dotnet
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_PASSWORD }}
+          packages_dir: ${{ github.workspace }}/sdk/python/bin/dist
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          access: "public"
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ${{ github.workspace }}/sdk/nodejs/bin/package.json
+
     strategy:
       fail-fast: true
       matrix:
@@ -392,14 +405,14 @@ jobs:
   #       path: ${{ github.workspace }}/bin
   #   - name: Untar provider binaries
   #     run: |-
-  #       tar -zxf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace}}/bin
+  #       tar -zxf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin
   #       find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print -exec chmod +x {} \;
   #   - run: dotnet nuget add source ${{ github.workspace }}/nuget
   #   - name: Download SDK
   #     uses: actions/download-artifact@v2
   #     with:
   #       name: ${{ matrix.language }}-sdk.tar.gz
-  #       path: ${{ github.workspace}}/sdk/
+  #       path: ${{ github.workspace }}/sdk/
   #   - name: Uncompress SDK folder
   #     run: tar -zxf ${{ github.workspace }}/sdk/${{ matrix.language }}.tar.gz -C ${{
   #       github.workspace }}/sdk/${{ matrix.language }}
