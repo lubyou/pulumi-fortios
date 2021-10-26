@@ -140,9 +140,9 @@ jobs:
           find ${{ github.workspace }} -name "pulumi-*-${{ env.PROVIDER }}" -print -exec chmod +x {} \;
       - name: Build SDK
         run: make build_${{ matrix.language }}
-      # - name: Check worktree clean
-      #   if: ${{ !env.ACT }}
-      #   run: ./ci-scripts/ci/check-worktree-is-clean
+      - name: Check worktree clean
+        if: ${{ !env.ACT }}
+        run: ./ci-scripts/ci/check-worktree-is-clean
       - name: Compress SDK folder
         run:
           tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }}
