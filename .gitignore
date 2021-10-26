@@ -159,3 +159,4 @@ sdk/*/bin
 *.iml
 
 yarn.lock
+.secrets
