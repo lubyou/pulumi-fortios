@@ -989,6 +989,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_user_saml":                               {Tok: makeDataSource(mainMod, "GetUserSaml")},
 			"fortios_user_samllist":                           {Tok: makeDataSource(mainMod, "GetUserSamlList")},
 		},
+		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
@@ -998,6 +999,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
+			PackageName: "@lubyou/pulumi-fortios",
 			// See the documentation for tfbridge.OverlayInfo for how to lay out this
 			// section, or refer to the AWS provider. Delete this section if there are
 			// no overlay files.
