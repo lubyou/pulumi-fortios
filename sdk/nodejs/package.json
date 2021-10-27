@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/fortios",
+    "name": "@lubyou/pulumi-fortios",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing fortios cloud resources.",
     "keywords": [
@@ -20,6 +20,7 @@
         "@types/node": "^10.0.0"
     },
     "pulumi": {
-        "resource": true
+        "resource": true,
+        "pluginDownloadURL": "https://s3.vnci.io/pulumi/releases/plugins"
     }
 }
